@@ -12,11 +12,7 @@ export default {
       return this.$store.state.project;
     },
     list() {
-      const res = [];
-      for (const key in this.$store.state.projectInfo.files){
-        res.push(key);
-      }
-      return res;
+      return this.$store.getters.navItem;
     },
   },
 };
