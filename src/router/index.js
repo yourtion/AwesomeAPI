@@ -14,12 +14,16 @@ export default new Router({
     {
       path: '/home',
       component: Home,
-      // children: [
-      //   {
-      //     path: '',
-      //     component: resolve => require([ 'components/Index.vue' ], resolve),
-      //   },
-      // ],
+      children: [
+        // {
+        //   path: '',
+        //   component: resolve => require([ 'components/Index.vue' ], resolve),
+        // },
+        {
+          path: '/api/:project/:file',
+          component: resolve => require([ 'views/API.vue' ], resolve),
+        },
+      ],
     },
   ],
 });
