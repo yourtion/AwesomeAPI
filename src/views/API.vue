@@ -1,5 +1,5 @@
 <template>
- <div>
+ <div v-loading.body="loading">
  <h2> {{ group_name }}</h2>
  <h3>项目：{{ $route.params.project }} 文件：{{ $route.params.file }}</h3>
  <div>
