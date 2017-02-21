@@ -1,1 +1,2 @@
 export const SAVE_API_CONTENT = 'SAVE_API_CONTENT';
+export const SAVE_API_INDEX = 'SAVE_API_INDEX';

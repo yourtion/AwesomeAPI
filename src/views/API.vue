@@ -22,6 +22,7 @@ export default {
   },
   created() {
     this.loading = true;
+    this.$store.dispatch('getApiIndex', this.$route.params);
     this.$store.dispatch('getApiFile', this.$route.params).then(() => { this.loading = false; });
   },
   data() {

@@ -21,6 +21,7 @@
           <el-button type="primary" @click="onSubmit">测试API</el-button>
         </el-form-item>
       </el-form>
+      <pre> {{ result }} </pre>
     </el-col>
     <el-col :span="8"><pre> {{ item.result }} </pre></el-col>
   </el-row>
@@ -32,6 +33,7 @@ export default {
     return {
       form: this.getForm(),
       rules: this.getRules(),
+      result: {},
     };
   },
   methods: {
@@ -50,6 +52,13 @@ export default {
       return res;
     },
     onSubmit() {
+      const req = {
+        baseUrl: this.$store.state.baseUrl,
+        url: this.item.url,
+        method: this.item.method,
+        params: this.form,
+      };
+      this.$store.dispatch('request', req).then((data) => { this.result = data;this.loading = false; });
       console.log(this.form);
     },
   },
