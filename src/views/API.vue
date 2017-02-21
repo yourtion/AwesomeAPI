@@ -22,22 +22,26 @@ export default {
   },
   watch: {
     '$route'(to) {
-      // if(to.params.project !== this.$store.state.project) {
-        this.$store.dispatch('getApiIndex', to.params);
-      // }
-      this.$store.dispatch('getApiFile', to.params).then(() => { this.loading = false; });
+      this.params = to.params;
+      this.fetchData();
     },
   },
   created() {
-    this.loading = true;
-    this.$store.dispatch('getApiIndex', this.$route.params);
-    this.$store.dispatch('getApiFile', this.$route.params).then(() => { this.loading = false; });
+    this.fetchData();
   },
   data() {
     return {
       loading: true,
       activeName: '',
+      params: this.$route.params,
     };
+  },
+  methods: {
+    fetchData() {
+      this.loading = true;
+      this.$store.dispatch('getApiIndex', this.params);
+      this.$store.dispatch('getApiFile', this.params).then(() => { this.loading = false; });
+    },
   },
   computed: {
     content() {
