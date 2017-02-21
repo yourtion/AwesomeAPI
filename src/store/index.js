@@ -8,7 +8,10 @@ Vue.use(Vuex);
 const state = {
   project: '',
   file: '',
-  baseUrl: '',
+  projectInfo: {
+    baseUrl: '',
+    files: [],
+  },
   content: {},
 };
 

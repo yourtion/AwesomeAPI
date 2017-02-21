@@ -20,6 +20,14 @@ export default {
   components: {
     'api-content': ApiContent,
   },
+  watch: {
+    '$route'(to) {
+      // if(to.params.project !== this.$store.state.project) {
+        this.$store.dispatch('getApiIndex', to.params);
+      // }
+      this.$store.dispatch('getApiFile', to.params).then(() => { this.loading = false; });
+    },
+  },
   created() {
     this.loading = true;
     this.$store.dispatch('getApiIndex', this.$route.params);

@@ -7,6 +7,7 @@ export default {
     state.content = payload.data;
   },
   [types.SAVE_API_INDEX](state, payload) {
-    state.baseUrl = payload.baseUrl;
+    state.projectInfo.baseUrl = payload.baseUrl;
+    state.projectInfo.files = payload.files;
   },
 };

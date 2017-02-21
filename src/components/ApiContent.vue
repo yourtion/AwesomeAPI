@@ -53,7 +53,7 @@ export default {
     },
     onSubmit() {
       const req = {
-        baseUrl: this.$store.state.baseUrl,
+        baseUrl: this.$store.state.projectInfo.baseUrl,
         url: this.item.url,
         method: this.item.method,
         params: this.form,
