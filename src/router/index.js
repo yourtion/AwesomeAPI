@@ -1,15 +1,25 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Hello from 'components/Hello';
 
 Vue.use(Router);
+
+import Home from 'views/Home';
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Hello',
-      component: Hello,
+      redirect: '/home',
+    },
+    {
+      path: '/home',
+      component: Home,
+      // children: [
+      //   {
+      //     path: '',
+      //     component: resolve => require([ 'components/Index.vue' ], resolve),
+      //   },
+      // ],
     },
   ],
 });
