@@ -16,4 +16,14 @@ body {
   margin: 0;
   padding: 0;
 }
+.result {
+  background: #EEE;
+  padding: 10px;
+}
+.el-table .form-item {
+  margin: 3px;
+}
+.form-action {
+  margin-top: 8px;
+}
 </style>

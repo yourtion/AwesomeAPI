@@ -1,12 +1,12 @@
 <template>
   <el-row :gutter="20">
     <el-col :span="16">
-      <el-form ref="form" :model="form" :rules="rules">
+      <el-form ref="form" :show-message="false" :model="form" :rules="rules">
         <el-table :data="item.params" style="width: 100%">
           <el-table-column prop="name" label="参数" width="180"> </el-table-column>
           <el-table-column label="内容" width="400"> 
             <template scope="scope">
-              <el-form-item :prop="scope.row.name">
+              <el-form-item :prop="scope.row.name" class="form-item">
                 <el-input v-model="form[scope.row.name]" size="small" :placeholder="scope.row.name"></el-input>
               </el-form-item>
             </template>
@@ -17,13 +17,21 @@
           </el-table-column>
           <el-table-column prop="description" label="描述"> </el-table-column>
         </el-table>
-        <el-form-item>
-          <el-button type="primary" @click="onSubmit">测试API</el-button>
+        <el-form-item class="form-action">
+          <el-button @click="resetForm('form')">重置</el-button>
+          <el-button v-if="item.sign" type="info" @click="resetForm('form')">生成签名</el-button>
+          <el-button type="primary" @click="onSubmit" :loading="loading">测试API</el-button>
         </el-form-item>
       </el-form>
-      <pre> {{ result }} </pre>
+      <div v-if="result">
+        <el-tooltip placement="right">
+          <div slot="content"><pre> {{ result }} </pre></div>
+          <el-button>返回结果<i class="el-icon-information el-icon--right"></i></el-button>
+        </el-tooltip>
+        <pre class="result"> {{ result.data }} </pre>
+      </div>
     </el-col>
-    <el-col :span="8"><pre> {{ item.result }} </pre></el-col>
+    <el-col :span="8"><h3>结果示例：</h3><pre class="result"> {{ item.result }} </pre></el-col>
   </el-row>
 </template>
 <script>
@@ -31,9 +39,10 @@ export default {
   props: [ 'item' ],
   data() {
     return {
+      loading: false,
       form: this.getForm(),
       rules: this.getRules(),
-      result: {},
+      result: '',
     };
   },
   methods: {
@@ -51,18 +60,29 @@ export default {
       }
       return res;
     },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
     onSubmit() {
+      this.result = '';
+      this.loading = true;
       const req = {
         baseUrl: this.$store.state.projectInfo.baseUrl,
         url: this.item.url,
         method: this.item.method,
         params: this.form,
       };
-      this.$store.dispatch('request', req).then((data) => { this.result = data;this.loading = false; });
+      this.$store.dispatch('request', req)
+      .then((data) => {
+        this.result = data;
+        this.loading = false;
+      })
+      .catch((err) => {
+        const msg = err.message || '请求出错';
+        this.$message.error(msg);
+      });
       console.log(this.form);
     },
   },
 };
 </script>
-<style>
-</style>
