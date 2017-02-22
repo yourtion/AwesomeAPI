@@ -18,8 +18,8 @@
           <el-table-column prop="description" label="描述"> </el-table-column>
         </el-table>
         <el-form-item class="form-action">
-          <el-button @click="resetForm('form')">重置</el-button>
-          <el-button v-if="item.sign" type="info" @click="resetForm('form')">生成签名</el-button>
+          <el-button @click="resetForm()">重置</el-button>
+          <el-button v-if="item.sign" type="info" @click="sign()">生成签名</el-button>
           <el-button type="primary" @click="onSubmit" :loading="loading">测试API</el-button>
         </el-form-item>
       </el-form>
@@ -35,6 +35,8 @@
   </el-row>
 </template>
 <script>
+import qs from 'querystring';
+import md5 from 'md5';
 export default {
   props: [ 'item' ],
   data() {
@@ -69,6 +71,21 @@ export default {
     resetForm() {
       this.form = this.getForm();
     },
+    sign() {
+      const paramsKey = [];
+      for(const item of this.item.params) {
+        paramsKey.push(item.name);
+      }
+      const paramsKeySorted = paramsKey.sort();
+      const paramsSorted = {};
+      for(const key of paramsKeySorted) {
+        const value = this.form[key];
+        if(key !== 'signature' && value) {
+          paramsSorted[key] = value;
+        }
+      }
+      const signString = qs.stringify(paramsSorted) + `:ssss`;
+      this.form.signature = md5(signString);
     },
     onSubmit() {
       this.result = '';
