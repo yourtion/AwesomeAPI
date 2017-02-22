@@ -50,6 +50,12 @@ export default {
       const res = {};
       for(const item of this.item.params) {
         res[item.name] = '';
+        if(item.name === 'timestamp') {
+          res[item.name] = Math.round(new Date().getTime() / 1000);
+        }
+        if(item.name === 'noncestr'){
+          res[item.name] = Math.random().toString(36).substr(2, 15);
+        }
       }
       return res;
     },
@@ -60,8 +66,9 @@ export default {
       }
       return res;
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields();
+    resetForm() {
+      this.form = this.getForm();
+    },
     },
     onSubmit() {
       this.result = '';
