@@ -1,5 +1,5 @@
 {
-  "name": "api-test",
+  "name": "awesome-api",
   "version": "1.0.0",
   "description": "API test ",
   "author": "YourtionGuo <yourtion@gmail.com>",
@@ -11,11 +11,11 @@
   },
   "dependencies": {
     "axios": "^0.15.3",
-    "element-ui": "^1.1.6",
+    "element-ui": "^1.2.3",
     "md5": "^2.2.1",
-    "vue": "^2.1.10",
-    "vue-router": "^2.2.0",
-    "vuex": "^2.1.2"
+    "vue": "^2.2.1",
+    "vue-router": "^2.3.0",
+    "vuex": "^2.2.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",
@@ -56,7 +56,7 @@
     "webpack-bundle-analyzer": "^2.2.1",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
-    "webpack-merge": "^2.6.1"
+    "webpack-merge": "^3.0.0"
   },
   "engines": {
     "node": ">= 4.0.0",
