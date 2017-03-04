@@ -1,5 +1,7 @@
 # AwesomeAPI
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/yourtion/AwesomeAPI.svg)](https://greenkeeper.io/)
+
 > API test like 
 
 ## Build Setup
