@@ -13,6 +13,7 @@ const state = {
     baseUrl: '',
     files: [],
   },
+  projectConfig: {},
   content: {},
 };
 
