@@ -4,7 +4,7 @@
  <h3>项目：{{ $route.params.project }} 文件：{{ $route.params.file }}</h3>
  <div>
   <el-collapse v-model="activeName" accordion>
-    <el-collapse-item v-for="item in content.apis" :name="item.title">
+    <el-collapse-item v-for="item in content.apis" :name="item.title" :key="item.title">
     <template slot="title">
       <el-tag type="primary">{{ item. method }}</el-tag> {{ item.url }} - {{ item.title }}
     </template>

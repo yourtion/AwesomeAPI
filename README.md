@@ -1,6 +1,6 @@
 # AwesomeAPI
 
-> API test like 
+> API test like Swagger 
 
 ## Build Setup
 

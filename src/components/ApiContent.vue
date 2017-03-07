@@ -110,3 +110,16 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.result {
+  background: #EEE;
+  padding: 10px;
+}
+.el-table .form-item {
+  margin: 3px;
+}
+.form-action {
+  margin-top: 8px;
+}
+</style>
