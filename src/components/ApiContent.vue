@@ -97,14 +97,14 @@ export default {
         params: this.form,
       };
       this.$store.dispatch('request', req)
-      .then((data) => {
-        this.result = data;
-        this.loading = false;
-      })
-      .catch((err) => {
-        const msg = err.message || '请求出错';
-        this.$message.error(msg);
-      });
+        .then((data) => {
+          this.result = data;
+          this.loading = false;
+        })
+        .catch((err) => {
+          const msg = err.message || '请求出错';
+          this.$message.error(msg);
+        });
       console.log(this.form);
     },
   },
